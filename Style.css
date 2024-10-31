@@ -1,0 +1,523 @@
+/* Paleta de colores */
+:root {
+    --primary-blue: #1E3250;
+    --secondary-gold: #CCB146;
+    --background-light: #f5f5f5;
+    --text-dark: #333;
+    --tone-1-color: #4C6B88;
+    --purple-color: #6E417A;
+    --green-color: #297D6D;
+}
+
+/* Estructura general */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+}
+
+/* Encabezado */
+header {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    background-image: url('imagenes/header-01.webp');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translateZ(-1px);
+}
+
+header img:first-child {
+    display: block;
+}
+
+.logo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 20;
+}
+
+.logo img {
+    width: 300px;
+    height: auto;
+    cursor: pointer;
+}
+
+.title-section p {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-in-out;
+}
+
+.title-section.visible p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.title-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: var(--background-light);
+}
+
+.title-section h1 {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+}
+
+.title-section p {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    max-width: 800px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.title-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin: 40px 0;
+}
+
+.blog-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.blog-box.tone-1 .image-container::before {
+    background-color: var(--tone-1-color);
+}
+
+.blog-box.purple .image-container::before {
+    background-color: var(--purple-color);
+}
+
+.blog-box.green .image-container::before {
+    background-color: var(--green-color);
+}
+
+.blog-box {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 160px 20px 20px;
+    text-align: center;
+    position: relative;
+    overflow: visible;
+    transition: all 0.6s ease-in-out;
+    z-index: 0;
+    border: 2px solid transparent;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.blog-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.blog-box:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.blog-box.tone-1:hover {
+    border-color: var(--tone-1-color);
+}
+
+.blog-box.purple:hover {
+    border-color: var(--purple-color);
+}
+
+.blog-box.green:hover {
+    border-color: var(--green-color);
+}
+
+/* Animación desde abajo hacia arriba para las imágenes */
+.image-container {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(40px) translateY();
+    opacity: 0;
+    transition: opacity 3s ease-out, transform 2s ease-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+.blog-box.tone-1 .image-container{
+    background-color: var(--tone-1-color);
+}
+.blog-box.green .image-container{
+
+    background-color: var(--green-color);
+}
+.blog-box.purple .image-container{
+    background-color:  var(--purple-color);
+}
+
+/* Estado visible: La imagen vuelve a su posición original */
+.image-container.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    transition: transform 2 ease-in-out 2s;
+
+}
+
+.blog-box:hover .image-container {
+    top: -50px;
+    width: 250px;
+    height: 250px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: top 0.8s ease-in-out, width 0.8s ease-in-out, height 0.8s ease-in-out;
+}
+
+h3 {
+    margin-top: 80px;
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+    color: var(--primary-blue);
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-blue);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.blog-box.tone-1:hover h3::after {
+    background-color: var(--tone-1-color);
+    transform: translateX(0);
+}
+
+.blog-box.purple:hover h3::after {
+    background-color: var(--purple-color);
+    transform: translateX(0);
+}
+
+.blog-box.green:hover h3::after {
+    background-color: var(--green-color);
+    transform: translateX(0);
+}
+
+.position {
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+blockquote {
+    text-align: justify;
+    font-style: italic;
+    color: var(--text-dark);
+    border-left: 4px solid var(--primary-blue);
+    padding-left: 15px;
+    margin: 10px 0;
+    font-size: 1rem;
+    transition: all 0.6s ease-in-out;
+}
+
+@media (max-width: 992px) {
+    .blog-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-container {
+        grid-template-columns: 1fr;
+    }
+
+    .blog-box {
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
+footer {
+    background-color: var(--primary-blue);
+    padding: 40px 20px;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 40px;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+    background-color: var(--secondary-gold);
+}
+
+.social-icons img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+.footer-links a {
+    color: var(--secondary-gold);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.footer-text {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+footer::before,
+footer::after {
+    content: "";
+    position: absolute;
+    width: 150%;
+    height: 2px;
+    background: var(--secondary-gold);
+    animation: slide-in 3s infinite alternate ease-in-out;
+}
+
+footer::before {
+    top: 0;
+    left: -100px;
+}
+
+footer::after {
+    bottom: 0;
+    right: -100px;
+    animation-delay: 1.5s;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+    }
+
+    .social-icons a {
+        margin: 5px;
+    }
+}
+/* Sección de agradecimiento */
+.agradecimiento-section {
+    text-align: center;
+    padding: 40px 15px;
+    background: linear-gradient(135deg, #f5f5f5, #eaeaea);
+}
+
+.agradecimiento-section h2 {
+    font-size: 1.8rem; /* Reducimos el tamaño del título */
+    color: #1E3250; /* Primary Blue */
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Contenedor de fotos */
+.photo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px; /* Reducimos el espacio entre fotos */
+    position: relative;
+    padding: 15px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.8s ease-in-out forwards;
+    animation-delay: 0.4s;
+}
+
+/* Cada foto en su contenedor */
+.photo {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    width: 220px; /* Reducimos el tamaño del contenedor */
+    height: 220px;
+}
+
+.photo img {
+    width: 100%; /* Ajuste automático al tamaño del contenedor */
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efecto hover para fotos */
+.photo:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.photo img:hover {
+    transform: scale(1.05); /* Efecto de zoom más sutil */
+}
+
+/* La "X" entre las fotos */
+.cross {
+    font-size: 2.5rem; /* Reducimos el tamaño de la X */
+    font-weight: bold;
+    color: #CCB146; /* Secondary Gold */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    pointer-events: none;
+    z-index: 10;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0.8;
+}
+
+.photo-container:hover .cross {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+/* Animación al cargar la sección */
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Sección del video centrado */
+.video-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+ 
+}
+
+/* Contenedor del video */
+.video-container {
+    position: relative;
+    width: 100000px;
+    max-width: 90%; /* Responsivo */
+    border-radius: 30px; /* Bordes redondeados */
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+/* Estilo del reproductor de video */
+.video-player {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 30px; /* Asegura bordes redondeados en el video */
+}
+
+/* Botón de reproducción */
+.play-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+}
+
+/* Animación al pasar el mouse sobre el botón */
+.play-button:hover {
+    transform: scale(1.1);
+}
+
+/* Imagen del botón de reproducción */
+.play-button img {
+    width: 60%;
+    height: 60%;
+}
